@@ -9,6 +9,9 @@ import com.merzmostafaei.state.DirectionService;
 import com.merzmostafaei.state.TravelMode;
 import com.merzmostafaei.strategy.ChatClient;
 import com.merzmostafaei.strategy.DesAlgorithn;
+import com.merzmostafaei.template.Close;
+import com.merzmostafaei.template.RecordData;
+import com.merzmostafaei.template.Window;
 
 public class Main {
 
@@ -88,6 +91,14 @@ public class Main {
 
         var chatClient = new ChatClient();
         chatClient.send("password",new DesAlgorithn());
+
+
+        //TemplatePattern
+
+       var window = new Window(new Close(new RecordData("TemplatePattern")));
+       window.close();
+
+
 
 
 

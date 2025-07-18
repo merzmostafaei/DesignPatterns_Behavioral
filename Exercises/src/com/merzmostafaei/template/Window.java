@@ -1,13 +1,19 @@
 package com.merzmostafaei.template;
 
 public class Window {
-    public void close() {
-        //TODO: custom windows may need to execute some code before the window
-        // is closed.
+    private RecordData recordData;
 
-        System.out.println("Removing the window from the screen");
+    private Close close;
 
-        //TODO: custom windows may need to execute some code after the window
-        // is closed.
+    public Window(Close close) {
+        this.recordData = recordData;
+        this.close = close;
     }
+
+
+    public void close(){
+
+        close.Execute();
+    }
+
 }
