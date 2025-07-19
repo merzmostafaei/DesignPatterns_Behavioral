@@ -1,5 +1,6 @@
 package com.merzmostafaei;
 
+import com.merzmostafaei.command.*;
 import com.merzmostafaei.iterator.Product;
 import com.merzmostafaei.iterator.ProductCollection;
 import com.merzmostafaei.iterator.ProductIteratorInterface;
@@ -97,6 +98,23 @@ public class Main {
 
        var window = new Window(new Close(new RecordData("TemplatePattern")));
        window.close();
+
+
+       //CommandPattern
+
+        VideoEditor editor = new VideoEditor();
+        CommandCompose compose = new CommandCompose();
+
+        Command setText = new AddText(editor, "Command Pattern!");
+        Command setContrast = new AddContrast(editor, 7);
+
+        compose.executeCommand(setText);
+        compose.executeCommand(setContrast);
+
+        // Optional: replay history
+        System.out.println("\n--- Replaying History ---");
+        compose.replay();
+
 
 
 
