@@ -4,8 +4,13 @@ import com.merzmostafaei.command.*;
 import com.merzmostafaei.iterator.Product;
 import com.merzmostafaei.iterator.ProductCollection;
 import com.merzmostafaei.iterator.ProductIteratorInterface;
+import com.merzmostafaei.mediator.SignupPage;
 import com.merzmostafaei.memento.Document;
 import com.merzmostafaei.memento.DocumentHistory;
+import com.merzmostafaei.observer.ObserverStock;
+import com.merzmostafaei.observer.StatusBar;
+import com.merzmostafaei.observer.Stock;
+import com.merzmostafaei.observer.StockListView;
 import com.merzmostafaei.state.DirectionService;
 import com.merzmostafaei.state.TravelMode;
 import com.merzmostafaei.strategy.ChatClient;
@@ -114,6 +119,35 @@ public class Main {
         // Optional: replay history
         System.out.println("\n--- Replaying History ---");
         compose.replay();
+
+        // ObseverPattern
+
+        System.out.println("\n--- ObseverPattern---");
+        var socket = new Stock("$",29);
+        var status = new StatusBar(socket);
+        var stocklist = new StockListView(socket);
+        socket.addObserver(status);
+        socket.addObserver(stocklist);
+        socket.setPrice(59.9F);
+
+
+        // MediatorPattern
+        System.out.println(" MediatorPattern ");
+
+        var signup = new SignupPage();
+        signup.simulateUserInteraction();
+
+
+        // ChainOfResponsibility
+        System.out.println("ChainOfResponsibility");
+
+        
+
+
+
+
+
+
 
 
 
