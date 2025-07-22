@@ -1,5 +1,10 @@
 package com.merzmostafaei;
 
+import com.merzmostafaei.chainOfResponsibility.entity.DataFile;
+import com.merzmostafaei.chainOfResponsibility.fileReader.DataReader;
+import com.merzmostafaei.chainOfResponsibility.process.DataFileProcessor;
+import com.merzmostafaei.chainOfResponsibility.process.SaveData;
+import com.merzmostafaei.chainOfResponsibility.process.UnCompress;
 import com.merzmostafaei.command.*;
 import com.merzmostafaei.iterator.Product;
 import com.merzmostafaei.iterator.ProductCollection;
@@ -7,7 +12,6 @@ import com.merzmostafaei.iterator.ProductIteratorInterface;
 import com.merzmostafaei.mediator.SignupPage;
 import com.merzmostafaei.memento.Document;
 import com.merzmostafaei.memento.DocumentHistory;
-import com.merzmostafaei.observer.ObserverStock;
 import com.merzmostafaei.observer.StatusBar;
 import com.merzmostafaei.observer.Stock;
 import com.merzmostafaei.observer.StockListView;
@@ -132,16 +136,27 @@ public class Main {
 
 
         // MediatorPattern
-        System.out.println(" MediatorPattern ");
+        System.out.println("\n --MediatorPattern ");
 
         var signup = new SignupPage();
         signup.simulateUserInteraction();
 
 
         // ChainOfResponsibility
-        System.out.println("ChainOfResponsibility");
+        System.out.println("\n --ChainOfResponsibility");
 
-        
+        //DataReader -> unCompress -> SaveData
+        var saveData = new SaveData(null);
+        var unCompress = new UnCompress(saveData);
+        var dataReader = new DataReader(unCompress);
+        var App = new DataFileProcessor(dataReader);
+        App.handle(new DataFile("pdf.numbers"));
+        App.handle(new DataFile("photo.XSS"));
+
+
+
+
+
 
 
 

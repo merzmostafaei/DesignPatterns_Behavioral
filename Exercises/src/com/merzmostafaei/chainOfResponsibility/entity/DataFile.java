@@ -1,4 +1,4 @@
-package com.merzmostafaei.chainOfResponsibility;
+package com.merzmostafaei.chainOfResponsibility.entity;
 
 public class DataFile {
     private String filename;
