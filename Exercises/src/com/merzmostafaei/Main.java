@@ -22,6 +22,12 @@ import com.merzmostafaei.strategy.DesAlgorithn;
 import com.merzmostafaei.template.Close;
 import com.merzmostafaei.template.RecordData;
 import com.merzmostafaei.template.Window;
+import com.merzmostafaei.visitor.WavFile;
+import com.merzmostafaei.visitor.editeOperation.AddReverb;
+import com.merzmostafaei.visitor.editeOperation.Normalize;
+import com.merzmostafaei.visitor.editeOperation.ReduceNoise;
+import com.merzmostafaei.visitor.elementOperation.Editor;
+import com.merzmostafaei.visitor.elementOperation.Segment;
 
 public class Main {
 
@@ -151,7 +157,32 @@ public class Main {
         var dataReader = new DataReader(unCompress);
         var App = new DataFileProcessor(dataReader);
         App.handle(new DataFile("pdf.numbers"));
-        App.handle(new DataFile("photo.XSS"));
+        //App.handle(new DataFile("photo.XSS"));
+
+
+        // VisitorPattern
+
+            var waveFIle = WavFile.read("song.wave");
+
+            // add the editor for all segment
+            var editor1 = new Editor();
+            for (Segment segment : waveFIle.getSegments()){
+                editor1.add(segment);
+            }
+
+            //create Operation
+            var normilize = new Normalize();
+            var reduceNoise = new ReduceNoise();
+            var addVerb = new AddReverb();
+
+            System.out.println("apply NOrmilize");
+            editor1.execute(normilize);
+
+            System.out.println("apply ReduceNoise");
+            editor1.execute(reduceNoise);
+
+            System.out.println("apply AddReverb");
+            editor1.execute(addVerb);
 
 
 
