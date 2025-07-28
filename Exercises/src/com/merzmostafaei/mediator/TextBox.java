@@ -1,13 +1,18 @@
 package com.merzmostafaei.mediator;
 
-public class TextBox extends UIControl {
-    private String content;
+public class TextBox extends UiHanddler {
 
-    public String getContent() {
-        return content;
+    private String text;
+
+    public String getText() {
+        return text;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setText(String text) {
+        this.text = text;
+        notifyEventHandler();
     }
+
+
+
 }
